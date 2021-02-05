@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 echo "Hello from frontend!"
+#Unzip the Vue app
 cd /
 cd /shared/
 tar -xvf dist.tar.gz
-
+#Install nginx
 cd 
-
 sudo yum install epel-release -y
 sudo yum update -y
 sudo yum install nginx -y
-
+#Start the nginx server
 sudo systemctl start nginx
 sudo systemctl enable nginx
-
+#Modify the nginx default configuration file
 cat <<-'reemplazo' > /etc/nginx/nginx.conf
 user  nginx;
 worker_processes  1;
@@ -45,5 +45,5 @@ http {
   }
 }
 reemplazo
-
+#Reload the nginx server
 sudo systemctl reload nginx
